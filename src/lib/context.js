@@ -11,4 +11,5 @@ export const UserContext = React.createContext({
     email: "avishaignd@gmail.com",
     password: "123456",
     cart: [],
+    isAdmin: true
 })

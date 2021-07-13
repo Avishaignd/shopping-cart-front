@@ -8,3 +8,8 @@ export const getAllProducts = async () => {
     // console.log(data);
     return data
 }
+
+export const getUser = async (id) => {
+    const response = await axios.get(`http://localhost:5000/user/${id}`)
+    console.log(response);
+}
