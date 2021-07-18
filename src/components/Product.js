@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 export default function Product(props) {
 
     const single = props.props
+    // console.log(single);
     const user = useContext(UserContext)
     let location = useLocation()
 
