@@ -6,8 +6,6 @@ import Product from './Product'
 export default function ProductList() {
 
     const context = useContext(ProductContext)
-
-    getP()
     
     return (
         <div className="my-list">

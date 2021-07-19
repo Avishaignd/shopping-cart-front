@@ -7,10 +7,10 @@ import Product from './Product'
 export default function Cart() {
 
     const user = useContext(UserContext)
-    let location = useLocation()
-    let path = location.pathname
-    let id = path.split('/')[2]
-    getUser(id)
+    // let location = useLocation()
+    // let path = location.pathname
+    // let id = path.split('/')[2]
+    // getUser(id)
     
     // console.log(id);
 

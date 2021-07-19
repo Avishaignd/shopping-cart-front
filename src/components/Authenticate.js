@@ -3,7 +3,7 @@ import GoogleAuth from "./GoogleAuth";
 export default function Authenticate() {
   return (
     <div>
-      {/* <form action="http://localhost:5000/auth/google">
+      <form action="http://localhost:5000/auth/google">
         <button type="submit" className="google-button">
           <span className="google-button__icon">
             <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
@@ -30,8 +30,8 @@ export default function Authenticate() {
           </span>
           <span className="google-button__text">sign in with Google</span>
         </button>
-      </form> */}
-      <GoogleAuth />
+      </form>
+      {/* <GoogleAuth /> */}
     </div>
   );
 }

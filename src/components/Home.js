@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { getAllProducts } from "../lib/api";
+import { getAllProducts, getP } from "../lib/api";
 import { ProductContext, UserContext } from "../lib/context";
 import ProductList from "./ProductList";
 import { Navbar } from "react-bootstrap";
 import Cart from './Cart'
+import AdminPage from "./AdminPage";
 import Authenticate from "./Authenticate";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -47,7 +48,7 @@ export default function Home() {
             <Cart />
           </Route>
           <Route path="/admin">
-            <h1>admin</h1>
+            <AdminPage />
           </Route>
           <Route to="/auth">
               <Authenticate/>

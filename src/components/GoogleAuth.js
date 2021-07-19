@@ -1,10 +1,13 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
+import { useLocation } from "react-router-dom";
 
 export default function GoogleAuth() {
 
+  let location = useLocation()
   const responseGoogle = (response) => {
     console.log(response);
+    
   };
 
   return (
