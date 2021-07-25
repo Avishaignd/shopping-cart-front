@@ -7,13 +7,13 @@ import Product from './Product'
 export default function Cart() {
 
     const user = useContext(UserContext)
-    let {id} = useParams()
-    useEffect(() => {
-        if (id){
-            getUser(id)
-            .then((response) => {user.user = response})
-        }
-    }, [])
+    // let {id} = useParams()
+    // useEffect(() => {
+    //     if (id){
+    //         getUser(id)
+    //         .then((response) => {user.user = response})
+    //     }
+    // }, [])
 
 
     return (
@@ -24,7 +24,7 @@ export default function Cart() {
             })
             :
             <h1>Your cart is empty</h1>
-            }x
+            }
         </>
     )
 }

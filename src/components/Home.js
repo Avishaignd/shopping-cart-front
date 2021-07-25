@@ -29,7 +29,7 @@ export default function Home() {
           fixed="top"
         >
           <Link to="/">Login</Link>
-          <Link to="/auth">Auth</Link>
+          {/* <Link to="/auth">Auth</Link> */}
           <Link to="/cart">Cart</Link>
           <Link to="/products">Products</Link>
           {user.user && user.user.isAdmin ? (
@@ -47,15 +47,15 @@ export default function Home() {
               user.user ? 
               <h1>HELLO!</h1>
               :
-            <Authenticate />
+            <GoogleAuth />
             }
           </Route>
           <Route exact path="/products">
             <ProductList />
           </Route>
-          <Route path="/cart/:id">
+          {/* <Route path="/cart/:id">
             <Cart />
-          </Route>
+          </Route> */}
           <Route exact path="/cart">
             <Cart />
           </Route>
@@ -63,9 +63,9 @@ export default function Home() {
           <Route path="/admin">
             <AdminPage />
           </Route>
-          <Route to="/auth">
+          {/* <Route to="/auth">
               <GoogleAuth/>
-          </Route>
+          </Route> */}
           {/* <Route path="/:id">
             <ProductList />
           </Route> */}
