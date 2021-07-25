@@ -1,6 +1,8 @@
 import React from "react";
-import GoogleAuth from "./GoogleAuth";
+
 export default function Authenticate() {
+
+
   return (
     <div>
       <form action="http://localhost:5000/auth/google">

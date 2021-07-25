@@ -20,6 +20,8 @@ export const getP = async () => {
 }
 
 export const getUser = async (id) => {
-    const response = await axios.get(`http://localhost:5000/user/${id}`)
-    console.log(response);
+    const response = await axios.get(`http://localhost:5000/users/${id}`)
+    // console.log(response);
+    const data = response.data
+    return data
 }

@@ -13,20 +13,31 @@ export default function AddProduct() {
   });
 
   const handlePictureChange = (event) => {
-    // const file = event.target.files[0];
-    // setProduct({ ...product, image: file });
-    console.log(event);
+    const file = event.target.files[0];
+    setProduct({ ...product, image: file });
+    // console.log(event);
   };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    // const formData = new FormData();
-    // formData.append("productName", product.productName);
-    // formData.append("productType", product.productType);
-    // formData.append("productId", Math.random());
-    // formData.append("price", product.price);
-    // formData.append("image", product.image);
-    postProduct(product);
+    const formData = new FormData();
+    formData.append("productName", product.productName);
+    formData.append("productType", product.productType);
+    formData.append("productId", Math.random());
+    formData.append("price", product.price);
+    formData.append("image", product.image);
+    postProduct(formData, {
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data',
+      }
+  })
+  .then((response) => {
+    if (response.status === 200) {
+      alert("Product added")
+      window.location.reload()
+    }
+  })
   };
 
   return (
@@ -56,7 +67,7 @@ export default function AddProduct() {
           }
         />
       </Form.Group>
-      {/* <Form.Group>
+      <Form.Group>
         <Form.Label>Product image</Form.Label>
         <Form.File  
           type="image/jpeg"
@@ -64,7 +75,7 @@ export default function AddProduct() {
           onChange={(event) => handlePictureChange(event)}
           required
         />
-      </Form.Group> */}
+      </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Product price</Form.Label>
         <Form.Control

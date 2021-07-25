@@ -6,18 +6,18 @@ import { useLocation } from 'react-router-dom'
 export default function Product(props) {
 
     const single = props.props
-    console.log(single);
+    // console.log(single);
     const user = useContext(UserContext)
     let location = useLocation()
 
     const addProductToCart = (item) => {
-            user.cart.push(item)
+            user.user.cart.push(item)
             alert("Item added to cart!")
     }
 
     const removeFromCart = (item) => {
-            const filtered = user.cart.filter(product => product.id !== item.id)
-            user.cart = filtered
+            const filtered = user.user.cart.filter(product => product.id !== item.id)
+            user.user.cart = filtered
             alert("Item removed from cart!")
             window.location.reload()
     }

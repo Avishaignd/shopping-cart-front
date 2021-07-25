@@ -1,23 +1,25 @@
 import React, { useState, useEffect, useContext } from "react";
-import { getAllProducts, getP } from "../lib/api";
+import { getAllProducts, getUser } from "../lib/api";
 import { ProductContext, UserContext } from "../lib/context";
 import ProductList from "./ProductList";
 import { Navbar } from "react-bootstrap";
 import Cart from './Cart'
 import AdminPage from "./AdminPage";
 import Authenticate from "./Authenticate";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useParams, useLocation } from "react-router-dom";
+import GoogleAuth from "./GoogleAuth";
 
 export default function Home() {
+
   const myContext = useContext(ProductContext);
   const user = useContext(UserContext);
-
+  
   const setProds = async () => {
     let prods = await getAllProducts();
     myContext.products = prods;
   };
   setProds();
-
+  
   return (
     <>
       <Router>
@@ -26,10 +28,11 @@ export default function Home() {
           bg="dark"
           fixed="top"
         >
-          <Link to="/">Home</Link>
+          <Link to="/">Login</Link>
           <Link to="/auth">Auth</Link>
           <Link to="/cart">Cart</Link>
-          {user && user.isAdmin ? (
+          <Link to="/products">Products</Link>
+          {user.user && user.user.isAdmin ? (
             <Link className="links" to="/admin">
               Admin
             </Link>
@@ -39,20 +42,33 @@ export default function Home() {
         </Navbar>
         <Switch>
           <Route exact path="/">
-            <ProductList />
+            {/* <ProductList /> */}
+            {
+              user.user ? 
+              <h1>HELLO!</h1>
+              :
+            <Authenticate />
+            }
           </Route>
           <Route exact path="/products">
             <ProductList />
           </Route>
-          <Route path="/cart">
+          <Route path="/cart/:id">
             <Cart />
           </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+          
           <Route path="/admin">
             <AdminPage />
           </Route>
           <Route to="/auth">
-              <Authenticate/>
+              <GoogleAuth/>
           </Route>
+          {/* <Route path="/:id">
+            <ProductList />
+          </Route> */}
         </Switch>
       </Router>
     </>

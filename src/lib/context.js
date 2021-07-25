@@ -5,11 +5,5 @@ export const ProductContext = React.createContext({
 })
 
 export const UserContext = React.createContext({
-    firstName: "Avishai",
-    lastName: "Gandelman",
-    id: 1,
-    email: "avishaignd@gmail.com",
-    password: "123456",
-    cart: [],
-    isAdmin: true
+    user: undefined
 })
