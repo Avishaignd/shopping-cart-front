@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { postProduct } from "../lib/api";
 
 export default function AddProduct() {
@@ -17,6 +17,13 @@ export default function AddProduct() {
     setProduct({ ...product, image: file });
     // console.log(event);
   };
+
+  const handleAttributes = (event) => {
+    const splitted = event.target.value.split(':')
+    let attributeObj = {}
+    attributeObj[`${splitted[0]}`] = splitted[1]
+    setProduct({...product, attributes: [attributeObj]})
+  }
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -48,7 +55,7 @@ export default function AddProduct() {
       method="post"
       encType="multipart/form-data"
     >
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3">
         <Form.Label>Product name</Form.Label>
         <Form.Control
           type="text"
@@ -58,13 +65,23 @@ export default function AddProduct() {
           }
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3">
         <Form.Label>Product type</Form.Label>
         <Form.Control
           type="text"
           placeholder="Type"
           onChange={(event) =>
             setProduct({ ...product, productType: event.target.value })
+          }
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Product description</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="format - color:green"
+          onChange={(event) =>
+            handleAttributes(event)
           }
         />
       </Form.Group>
@@ -77,7 +94,7 @@ export default function AddProduct() {
           required
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3">
         <Form.Label>Product price</Form.Label>
         <Form.Control
           type="number"
