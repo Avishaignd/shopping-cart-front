@@ -4,6 +4,4 @@ export const ProductContext = React.createContext({
     products: []
 })
 
-export const UserContext = React.createContext({
-    user: undefined
-})
+export const UserContext = React.createContext()
