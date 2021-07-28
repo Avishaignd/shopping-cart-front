@@ -7,6 +7,7 @@ import Cart from "./Cart";
 import AdminPage from "./AdminPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
+import Logout from "./Logout";
 
 export default function Home() {
   const productsContext = useContext(ProductContext);
@@ -41,7 +42,7 @@ export default function Home() {
       <Router>
         <Navbar id="nav-bar" bg="dark" fixed="top">
           {!userData && <Link to="/">Login</Link>}
-          { userData && <div>LogOut</div>}
+          { userData && <Logout />}
           <Link to="/cart">Cart</Link>
           <Link to="/products">Products</Link>
           {userData && userData.isAdmin && (

@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { Button } from "react-bootstrap";
 
 export default function Logout() {
-    return (
-        <div>
-            
-        </div>
-    )
+  const handleLogout = () => {
+      window.location.reload();
+  };
+
+  return <Button onClick={handleLogout}>Log Out</Button>;
 }
