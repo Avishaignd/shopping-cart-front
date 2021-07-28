@@ -1,80 +1,70 @@
-import React, { useState, useEffect, useContext } from "react";
-import { getAllProducts, getUser } from "../lib/api";
+import React, { useEffect, useContext, useState } from "react";
+import { getAllProducts } from "../lib/api";
 import { ProductContext, UserContext } from "../lib/context";
 import ProductList from "./ProductList";
 import { Navbar } from "react-bootstrap";
-import Cart from './Cart'
+import Cart from "./Cart";
 import AdminPage from "./AdminPage";
-import Authenticate from "./Authenticate";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
 
 export default function Home() {
+  const productsContext = useContext(ProductContext);
+  const [userData, setUserData] = useState(null);
 
-  const myContext = useContext(ProductContext);
-  const user = useContext(UserContext);
-  const [userState, setUserState] = useState(null)
   useEffect(() => {
-    setUserState({...user})
-  }, [user.user])
+    console.log("bingo");
+    console.log(UserContext.user);
+    if (UserContext.user) {
+      setUserData(UserContext.user);
+    }
+  }, []);
 
-  const setProds = async () => {
-    let prods = await getAllProducts();
-    myContext.products = prods;
-  };
-  setProds();
+  useEffect(() => {
+    const setProds = async () => {
+      let prods = await getAllProducts();
+      productsContext.products = prods;
+    };
+    setProds();
+  }, [productsContext]);
   
+  const setUser = (userNewData) => {
+    if (userNewData) setUserData(userNewData);
+  };
+
   return (
-    <>
+    <UserContext.Provider
+      value={{
+        user: userData,
+        setUser: setUser,
+      }}>
       <Router>
-        <Navbar
-          id="nav-bar"
-          bg="dark"
-          fixed="top"
-        >
-          <Link to="/">Login</Link>
-          {/* <Link to="/auth">Auth</Link> */}
+        <Navbar id="nav-bar" bg="dark" fixed="top">
+          {!userData && <Link to="/">Login</Link>}
+          { userData && <div>LogOut</div>}
           <Link to="/cart">Cart</Link>
           <Link to="/products">Products</Link>
-          {user.user && user.user.isAdmin ? (
+          {userData && userData.isAdmin && (
             <Link className="links" to="/admin">
               Admin
             </Link>
-          ) : (
-            <></>
           )}
         </Navbar>
         <Switch>
           <Route exact path="/">
-            {/* <ProductList /> */}
-            {
-              user.user ? 
-              <h1>HELLO!</h1>
-              :
-            <GoogleAuth />
-            }
+            {userData ? <h1>Welcome {userData.name}</h1> : <GoogleAuth />}
           </Route>
           <Route exact path="/products">
             <ProductList />
           </Route>
-          {/* <Route path="/cart/:id">
-            <Cart />
-          </Route> */}
           <Route exact path="/cart">
             <Cart />
           </Route>
-          
           <Route path="/admin">
             <AdminPage />
           </Route>
-          {/* <Route to="/auth">
-              <GoogleAuth/>
-          </Route> */}
-          {/* <Route path="/:id">
-            <ProductList />
-          </Route> */}
         </Switch>
       </Router>
-    </>
+    </UserContext.Provider>
   );
 }
