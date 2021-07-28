@@ -6,14 +6,18 @@ import { Navbar } from "react-bootstrap";
 import Cart from './Cart'
 import AdminPage from "./AdminPage";
 import Authenticate from "./Authenticate";
-import { BrowserRouter as Router, Switch, Route, Link, useParams, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
 
 export default function Home() {
 
   const myContext = useContext(ProductContext);
   const user = useContext(UserContext);
-  
+  const [userState, setUserState] = useState(null)
+  useEffect(() => {
+    setUserState({...user})
+  }, [user.user])
+
   const setProds = async () => {
     let prods = await getAllProducts();
     myContext.products = prods;

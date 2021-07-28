@@ -24,4 +24,11 @@ export const getUser = async (id) => {
 export const sendProductToCart = async (data) => {
     const response = await axios.post(`http://localhost:5000/api/users/add`, data)
     console.log(response);
+    return response
+}
+
+export const removeProductFromCart = async (data) => {
+    const response = await axios.post(`http://localhost:5000/api/users/remove`, data)
+    console.log(response);
+    return response
 }

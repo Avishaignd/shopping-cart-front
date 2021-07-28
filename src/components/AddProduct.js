@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
 import { postProduct } from "../lib/api";
 
 export default function AddProduct() {
@@ -41,6 +41,7 @@ export default function AddProduct() {
   };
 
   return (
+    
     <Form
       onSubmit={(event) => handleOnSubmit(event)}
       action="addProduct"

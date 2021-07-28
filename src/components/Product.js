@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../lib/context";
 import { Card, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { sendProductToCart } from '../lib/api'
+import { sendProductToCart, removeProductFromCart } from '../lib/api'
 
 export default function Product(props) {
   const single = props.props;
@@ -12,15 +12,12 @@ export default function Product(props) {
 
   const addProductToCart = async (item) => {
     sendProductToCart({item: item, user: user.user._id});
-    // user.user.cart.push(item)
-    // alert("Item added to cart!")
+    alert("Item added to cart")
   };
 
-  const removeFromCart = (item) => {
-    const filtered = user.user.cart.filter((product) => product.id !== item.id);
-    user.user.cart = filtered;
-    alert("Item removed from cart!");
-    window.location.reload();
+  const removeFromCart = async (item) => {
+    removeProductFromCart({item: item, user: user.user._id})
+    alert("item removed from cart")
   };
 
   return (
