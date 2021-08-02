@@ -5,11 +5,11 @@ import { UserContext } from "../lib/context";
 export default function GoogleAuth() {
   const user = useContext(UserContext)
   const responseGoogle = (response) => {
-    console.log(response);
+    console.log("hello"+response);
   };
 
   const handleLogin = async googleData => {
-    const res = await fetch("http://localhost:5000/api/v1/auth/google", {
+    const res = await fetch("https://shopping-cart-back.herokuapp.com/api/v1/auth/google", {
         method: "POST",
         body: JSON.stringify({
         token: googleData.tokenId
