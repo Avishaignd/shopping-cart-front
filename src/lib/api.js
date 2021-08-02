@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:5000'
+const baseURL = 'https://shopping-cart-back.herokuapp.com/'
 
 export const getAllProducts = async () => {
     const response = await axios.get(baseURL+'/api/products')
