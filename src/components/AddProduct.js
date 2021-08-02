@@ -22,7 +22,7 @@ export default function AddProduct() {
     const splitted = event.target.value.split(':')
     let attributeObj = {}
     attributeObj[`${splitted[0]}`] = splitted[1]
-    setProduct({...product, attributes: [attributeObj]})
+    // setProduct({...product, attributes: [attributeObj]})
   }
 
   const handleOnSubmit = (event) => {
