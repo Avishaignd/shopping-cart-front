@@ -10,5 +10,5 @@ export default function Logout() {
       window.location.assign("https://shopping-cart-front.netlify.app")
   };
 
-  return <Button onClick={handleLogout}>Log Out</Button>;
+  return <Button id='logout' variant='secondary' onClick={handleLogout}>Log Out</Button>;
 }

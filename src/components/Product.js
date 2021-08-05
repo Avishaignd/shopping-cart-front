@@ -22,7 +22,7 @@ export default function Product(props) {
 
   return (
     <>
-      <Card className="cards" style={{ width: "18rem" }}>
+      <Card className="cards mt-5" style={{ width: "18rem" }}>
         <Card.Img
           className="cards-image"
           variant="top"
