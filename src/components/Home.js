@@ -53,7 +53,7 @@ export default function Home() {
         </Navbar>
         <Switch>
           <Route exact path="/">
-            {userData ? <h1>Welcome {userData.name}</h1> : <GoogleAuth />}
+            {userData ? <h1 className="mt-5">Welcome {userData.name}</h1> : <GoogleAuth />}
           </Route>
           <Route exact path="/products">
             <ProductList />
